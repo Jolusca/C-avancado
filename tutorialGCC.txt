@@ -1,7 +1,8 @@
 0 - First you should write a simple hello.c file, then you will compile this file following the steps below
 
 1 - Preprocessing
-gcc hello.c -E > hello.i
+gcc hello.c -E > hello.i 
+# a extensão nn faz diferença, é o -E q faz
 
 2 - Compiling
 gcc -S hello.c
