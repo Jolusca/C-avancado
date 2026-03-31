@@ -2,7 +2,7 @@
 
 1 - Preprocessing
 gcc hello.c -E > hello.i 
-# a extensão nn faz diferença, é o -E q faz
+ a extensão nn faz diferença, é o -E q faz
 
 2 - Compiling
 gcc -S hello.c
@@ -15,4 +15,4 @@ gcc -c hello.c
 4 - Linking
 gcc hello.o -o hello
 
-gcc hello.c -o hello
+##gcc hello.c -o hello
