@@ -1,3 +1,6 @@
+#TODO
+-[ ] max 4 usando o max2 recursivamente
+
 0 - First you should write a simple hello.c file, then you will compile this file following the steps below
 
 1 - Preprocessing
@@ -16,3 +19,9 @@ gcc -c hello.c
 gcc hello.o -o hello
 
 ## gcc hello.c -o hello
+
+###Decompiler
+https://dogbolt.org/
+
+
+gcc main.c -o main -DDEBUG (define debug)
