@@ -1,5 +1,4 @@
-#TODO
--[ ] max 4 usando o max2 recursivamente
+
 
 0 - First you should write a simple hello.c file, then you will compile this file following the steps below
 
