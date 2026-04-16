@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+#define MAX2(x,y) (x>y? x:y)
+#define MAX3(x,y,z) (MAX2(x,y)>z? MAX2(x,y):z)
+
+int main(void){
+
+printf("%d\n", MAX3(3,4,5)); 
+return 0;
+}
+
