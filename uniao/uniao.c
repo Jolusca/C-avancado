@@ -6,13 +6,12 @@ typedef union data {
     char c2;
 } Data;
 
-typedef struct __atribute__((__packed__)) {
-    //define o tamanho da struct como esse sem deixar o compilador definir outro
+// Correção na sintaxe do atributo packed e da definição do tipo
+typedef struct __attribute__((__packed__)) {
     unsigned char a:4;
     unsigned int b:8;
     unsigned char c:4;
 } Example6;
-
 
 int main (void){
     Data test;
