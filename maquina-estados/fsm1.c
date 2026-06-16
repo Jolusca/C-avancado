@@ -1,13 +1,21 @@
 #include <stdio.h>   // Biblioteca para funções de entrada e saída (printf, scanf)
 
-// Definição dos estados da máquina de estados
-#define ESTADO_INICIAL           0  //define que representa o estado inicial
-#define ESTADO_DIGITOU_LETRA_A   1  //define que representa o estado no qual a letra 'a' foi digitada
-#define ESTADO_DIGITOU_LETRA_B   2  //define que representa o estado no qual a letra 'b' foi digitada
-#define ESTADO_DIGITOU_LETRA_C   3  //define que representa o estado no qual a letra 'c' foi digitada
+// // Definição dos estados da máquina de estados
+// #define ESTADO_INICIAL           'Z'  //define que representa o estado inicial
+// #define ESTADO_DIGITOU_LETRA_A   'A'  //define que representa o estado no qual a letra 'a' foi digitada
+// #define ESTADO_DIGITOU_LETRA_B   'B'  //define que representa o estado no qual a letra 'b' foi digitada
+// #define ESTADO_DIGITOU_LETRA_C   'C'  //define que representa o estado no qual a letra 'c' foi digitada
 
+//evitar caixa alta em C para casos que nao sao macros
+typedef enum
+{
+    ESTADO_INICIAL,
+    ESTADO_DIGITOU_LETRA_A,
+    ESTADO_DIGITOU_LETRA_B,
+    ESTADO_DIGITOU_LETRA_C
+} eEstadosMaquina;
 // Variável global responsável por armazenar o estado atual da máquina
-static char ControleMaquinaEstado;
+static eEstadosMaquina ControleMaquinaEstado;
 
 // Protótipo da função que executa a máquina de estados
 void ExecutaMaquinaDeEstados(void);
@@ -54,7 +62,8 @@ void ExecutaMaquinaDeEstados(void)
             if (TeclaLida == 'a')
             {
                 // Transição para o próximo estado
-                ControleMaquinaEstado = ESTADO_DIGITOU_LETRA_A;
+                // ControleMaquinaEstado = ESTADO_DIGITOU_LETRA_A;
+                ControleMaquinaEstado ++;
 
                 printf("Letra 'a' correta. Agora digite 'b'.\n\n");
             }
