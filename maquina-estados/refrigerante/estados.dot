@@ -1,0 +1,43 @@
+digraph MaquinaDeVendas {
+    // Configurações globais de layout
+    rankdir=LR;        // Fluxo principal da esquerda para a direita
+    splines=polyline;  // Mantém as dobras angulares e limpas
+    nodesep=1.2;       // Ajusta o espaço vertical entre blocos vizinhos
+    ranksep=2.5;       // Mantém a distância horizontal segura entre colunas
+    
+    // Configurações visuais dos nós e textos
+    node [shape=box, style=rounded, fontname="Arial", fontsize=11, height=0.7, width=2.0];
+    edge [fontname="Arial", fontsize=10];
+    
+    EscolhendoProduto [label="EscolhendoProduto\n(Aguardando Produto)", penwidth=2.0];
+    InserindoCredito [label="InserindoCredito\n(Acumulando Saldo)"];
+    CancelarCompra [label="CancelarCompra\n(Zera e Reinicia)"];
+    EntregandoProduto [label="EntregandoProduto\n(Libera Item)"];
+    DevolvendoTroco [label="DevolvendoTroco\n(Calcula Troco e Zera)"];
+
+    // Alinhamento da linha principal
+    { rank=same; EscolhendoProduto; InserindoCredito; EntregandoProduto; }
+
+    // Transições principais
+    EscolhendoProduto -> InserindoCredito [label=" Teclas\n 'c', 'g', 'l' "];
+    EscolhendoProduto -> CancelarCompra [label=" Tecla 'x' "];
+    
+    // LOOP OESTE (EscolhendoProduto): Indo estritamente de W para W
+    EscolhendoProduto:w -> EscolhendoProduto:w [label=" Inválido ", minlen=0.1, arrowsize=0.8];
+
+    // LOOPS LATERAIS (InserindoCredito):
+    // 1. Inserção de moedas abaixo do preço (Estritamente de E para E)
+    InserindoCredito:e -> InserindoCredito:e [label=" Tecla '1', '2'\n(Saldo < Preço) ", minlen=0.1, arrowsize=0.8];
+    
+    // 2. Crédito Inválido (Estritamente de W para W)
+    InserindoCredito:w -> InserindoCredito:w [label=" Inválido ", minlen=0.1, arrowsize=0.8];
+
+    // Transições pós-crédito
+    InserindoCredito -> EntregandoProduto [label=" Tecla '1', '2'\n (Saldo >= Preço) "];
+    InserindoCredito -> DevolvendoTroco [label=" Tecla 'x' "];
+    EntregandoProduto -> DevolvendoTroco [label=" Fluxo\n Direto "];
+    
+    // Linhas de retorno externas
+    DevolvendoTroco -> EscolhendoProduto [constraint=false, color=gray, style=dashed, label=" Reinicia "];
+    CancelarCompra -> EscolhendoProduto [constraint=false, color=gray, style=dashed, label=" Reinicia "];
+}
